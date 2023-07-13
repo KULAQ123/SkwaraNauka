@@ -1,0 +1,24 @@
+@import './base.css';
+
+body{
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 100vw;
+  min-height: unset;
+  width: 1580px;
+  font-family: Montserrat,sans-serif;
+  background: var(--bgcolor);
+}
+a,
+.green {
+  text-decoration: none;
+  color: black;
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+  color: var(--colortext);
+  }
+}
+
