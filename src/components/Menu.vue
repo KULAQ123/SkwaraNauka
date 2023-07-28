@@ -1,17 +1,27 @@
 <template>
   <div class="content">
     <nav class="navigation">
-      <ul class="menu">
-        <li v-for="headerMenuItem in headerMenuItems" :key="headerMenuItem.id">
+      <ul ref="pierwszyUL" class="menu">
+        <li
+          v-for="headerMenuItem in headerMenuItems"
+          :key="headerMenuItem.id"
+          class="item-menu"
+          :class="{ opened: headerMenuItem.opened }"
+        >
           <RouterLink :to="headerMenuItem.url">
             {{ headerMenuItem.label }}
-            <span class="arrow" @click.stop.prevent="clickOpenMenu"></span>
           </RouterLink>
-          <ul v-if="headerMenuItem.children" v-show="menuOpen" class="menu-content">
-            <li v-for="submenuItem in headerMenuItem.children" :key="submenuItem.id">
-              <RouterLink :to="submenuItem.url">{{ submenuItem.label }}</RouterLink>
-            </li>
-          </ul>
+          <span
+            v-if="headerMenuItem.children.length > 0"
+            class="arrow"
+            @click.stop.prevent="clickOpenMenu(headerMenuItem)"
+          ></span>
+          <DropDownMenu
+            v-if="headerMenuItem.children.length > 0"
+            :headerItemChildren="headerMenuItem.children"
+            :openMenu="headerMenuItem.opened"
+          >
+          </DropDownMenu>
         </li>
       </ul>
     </nav>
@@ -20,27 +30,38 @@
 
 <script>
 import { RouterLink } from 'vue-router'
+import DropDownMenu from '@/components/DropDownMenu.vue'
 
 export default {
   name: 'MenuItem',
-  components: { RouterLink },
+  components: { DropDownMenu, RouterLink },
   data() {
     return {
+      openedItem: null,
       headerMenuItems: [],
-      showDropdown: null,
-      menuOpen: false
+      showDropdown: null
     }
   },
   methods: {
-    showChildren(item) {
-      return item.children && item.children.length > 0
+    clickOpenMenu(item) {
+      if (this.openedItem && item.id !== this.openedItem.id) {
+        this.openedItem.opened = false
+      }
+
+      item.opened = !item.opened
+
+      this.openedItem = item.opened ? item : null
     },
-    clickOpenMenu() {
-      this.menuOpen = !this.menuOpen
-    },
-    addopen() {
+    addOpen() {
       this.headerMenuItems.forEach((item) => {
         item['opened'] = false
+      })
+
+      console.log('headerMenuItems', this.headerMenuItems)
+    },
+    closeAll() {
+      this.headerMenuItems.forEach((item) => {
+        item.opened = false
       })
     }
   },
@@ -69,16 +90,45 @@ export default {
         ]
       },
       { id: 4, label: 'Aktualności', url: '/aktualnosci', children: [] },
-      { id: 5, label: 'Kontakt', url: '/kontakt', children: [] }
+      {
+        id: 5,
+        label: 'Kontakt',
+        url: '/kontakt',
+        children: [
+          {
+            id: 1,
+            label: 'Rozliczenia ccc',
+            url: '/oferta/rozliczenia-podatkow',
+            children: []
+          },
+          { id: 2, label: 'Zasiłek rodzinny', url: '/oferta/zasilek-rodzinny', children: [] },
+          {
+            id: 3,
+            label: 'Ubezpieczenia zdrowotne',
+            url: '/oferta/ubezpieczenie-zdrowotne',
+            children: []
+          },
+          {
+            id: 4,
+            label: 'Ubezpieczenia zdrowotne',
+            url: '/oferta/ubezpieczenie-zdrowotne',
+            children: []
+          },
+          {
+            id: 5,
+            label: 'Ubezpieczenia zdrowotne',
+            url: '/oferta/ubezpieczenie-zdrowotne',
+            children: []
+          }
+        ]
+      }
     ]
-    this.addopen()
-
-    console.log(this.headerMenuItems)
+    this.addOpen()
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .content {
   display: flex;
   align-items: center;
@@ -89,7 +139,7 @@ export default {
     align-items: center;
     width: 100%;
 
-    ul.menu {
+    .menu {
       list-style-type: none;
       margin: 0;
       padding: 0;
@@ -99,16 +149,16 @@ export default {
       flex: 1;
       position: relative;
 
-      li {
+      .item-menu {
         margin: 0 10px;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+        text-decoration: none;
+        white-space: nowrap;
+        padding-bottom: 5px;
 
         a {
-          display: flex;
-          align-items: center;
-          text-transform: uppercase;
-          text-decoration: none;
-          white-space: nowrap;
-
           &.active {
             color: var(--colortext);
 
@@ -120,37 +170,32 @@ export default {
               left: 0;
               position: absolute;
               width: 100%;
+              transition: all 6s;
             }
-          }
-
-          .arrow {
-            display: flex;
-            width: 10px;
-            height: 10px;
-            border-bottom: 3px solid black;
-            border-right: 3px solid black;
-            transform: rotateZ(45deg);
-            margin-bottom: 5px;
-            margin-left: 10px;
-            padding: 5px;
-            //display: flex;
-            //width: 0;
-            //height: 0;
-            //border-left: 10px solid transparent;
-            //border-right: 10px solid transparent;
-            //border-top: 10px solid black;
           }
         }
 
-        .menu-content {
-          position: relative;
-          display: inline-block;
-          margin: 10px;
-          padding: 10px;
-          background-color: #d9d9d9;
+        .arrow {
+          display: flex;
+          width: 10px;
+          height: 10px;
+          border-bottom: 3px solid black;
+          border-right: 3px solid black;
+          transform: rotateZ(45deg);
+          margin-bottom: 5px;
+          margin-left: 10px;
+          padding: 5px;
+          cursor: pointer;
+          transition: all 0.6s;
+        }
 
-          li {
-            padding-bottom: 5px;
+        &.opened {
+          .arrow {
+            transform: rotate(225deg);
+            transition: all 0.6s;
+          }
+          .menu-content {
+            transition: all 0.3s;
           }
         }
       }

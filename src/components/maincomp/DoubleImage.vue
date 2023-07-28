@@ -4,7 +4,7 @@ import Cubebox from './cubebox/CubeBoxy.vue'
 
 <template>
   <section class="home-main-block with-dark-bg">
-    <div class="body">
+    <div class="content-container">
       <div class="text-container">
         <div class="wrapper">
           <div class="top-text">
@@ -43,7 +43,7 @@ import Cubebox from './cubebox/CubeBoxy.vue'
   background: linear-gradient(90deg, var(--pallete-14) 50%, var(--bg-color) 50%);
 
   &.with-dark-bg {
-    .body {
+    .content-container {
       background: var(--pallete-3);
 
       .text-container {
@@ -58,7 +58,7 @@ import Cubebox from './cubebox/CubeBoxy.vue'
     }
   }
 
-  .body {
+  .content-container {
     display: flex;
     background: var(--pallete-14);
 
@@ -112,7 +112,6 @@ import Cubebox from './cubebox/CubeBoxy.vue'
       flex-wrap: wrap;
       max-width: calc(4 * var(--box-width));
       max-height: calc(4 * var(--box-width));
-      margin: 0 200px;
 
       .image-box {
         display: flex;
@@ -139,7 +138,7 @@ import Cubebox from './cubebox/CubeBoxy.vue'
 
 @media (max-width: 1500px) {
   .home-main-block {
-    .body {
+    .content-container {
       overflow-x: hidden;
       padding: 0;
 
@@ -154,7 +153,7 @@ import Cubebox from './cubebox/CubeBoxy.vue'
 
 @media (max-width: 1023px) {
   .home-main-block {
-    .body {
+    .content-container {
       flex-direction: column;
 
       .text-container {
@@ -193,7 +192,7 @@ import Cubebox from './cubebox/CubeBoxy.vue'
 
 @media (max-width: 600px) {
   .home-main-block {
-    .body {
+    .content-container {
       .images-container {
         max-height: unset;
       }
@@ -238,7 +237,7 @@ import Cubebox from './cubebox/CubeBoxy.vue'
 
 @media (max-width: 450px) {
   .home-main-block {
-    .body {
+    .content-container {
       .text-container {
         .wrapper {
           h1 {

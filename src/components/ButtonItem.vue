@@ -12,6 +12,8 @@
   padding: 15px 30px;
   transition: all 0.3s;
   white-space: nowrap;
+  border-radius: 20px;
+
   span {
     font-size: 18px;
   }
