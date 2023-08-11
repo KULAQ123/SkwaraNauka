@@ -1,8 +1,8 @@
 <script setup>
-import LogoSkwara from './icons/LogoSkwara.vue'
-import Menu from './Menu.vue'
-import Button from './ButtonItem.vue'
-import { RouterLink } from 'vue-router'
+import LogoSkwara from "./icons/LogoSkwara.vue";
+import Menu from "./Menu.vue";
+import Button from "./ButtonItem.vue";
+import { RouterLink } from "vue-router";
 </script>
 
 <template>
@@ -18,7 +18,7 @@ import { RouterLink } from 'vue-router'
 <script>
 export default {
   //name: "Header"
-}
+};
 </script>
 
 <style lang="scss" scoped>

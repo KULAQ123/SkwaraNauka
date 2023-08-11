@@ -11,14 +11,14 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'DropDownMenu',
+  name: "DropDownMenu",
   data() {
     return {
-      ulHeight: ''
-    }
+      ulHeight: ""
+    };
   },
   props: {
     headerItemChildren: Array,
@@ -27,17 +27,17 @@ export default defineComponent({
   computed: {},
   methods: {
     setHeightList() {
-      console.log('this.$refs.itemsRef', this.$refs.itemsRef)
+      console.log("this.$refs.itemsRef", this.$refs.itemsRef);
 
       if (this.$refs.itemsRef) {
-        this.ulHeight = `${this.$refs.itemsRef.offsetHeight}px`
+        this.ulHeight = `${this.$refs.itemsRef.offsetHeight}px`;
       }
     }
   },
   mounted() {
-    this.setHeightList()
+    this.setHeightList();
   }
-})
+});
 </script>
 
 <style lang="scss">

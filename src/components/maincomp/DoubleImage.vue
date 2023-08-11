@@ -1,7 +1,3 @@
-<script setup>
-import Cubebox from './cubebox/CubeBoxy.vue'
-</script>
-
 <template>
   <section class="home-main-block with-dark-bg">
     <div class="content-container">
@@ -11,7 +7,7 @@ import Cubebox from './cubebox/CubeBoxy.vue'
             <img src="src/assets/icona.svg" alt="icon" />
             <span>Gwarancja jakości usług</span>
           </div>
-          <h1>Pomożemy rozliczyć podatki z niemiec i austrii</h1>
+          <h1 v-html="data.title"></h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ducimus et
             exercitationem facere laborum maiores mollitia odio quia quibusdam vero! Eaque eligendi
@@ -25,10 +21,10 @@ import Cubebox from './cubebox/CubeBoxy.vue'
           <img height="360" width="360" src="src/assets/obraz.webp" alt="Logo" />
         </div>
         <div class="image-box">
-          <Cubebox />
+          <CubeBox />
         </div>
         <div class="image-box wrap">
-          <Cubebox />
+          <CubeBox />
         </div>
         <div class="image-box cube-left-top">
           <img height="360" width="360" src="src/assets/obraz.webp" alt="Logo" />
@@ -37,6 +33,20 @@ import Cubebox from './cubebox/CubeBoxy.vue'
     </div>
   </section>
 </template>
+
+<script>
+import CubeBox from './cubebox/CubeBoxy.vue'
+
+export default {
+  name: 'DoubleImage',
+  components: {
+    CubeBox
+  },
+  props: {
+    data: Object
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .home-main-block {
@@ -98,6 +108,7 @@ import Cubebox from './cubebox/CubeBoxy.vue'
           font-weight: 300;
           line-height: 1.2;
           white-space: pre-line;
+          color: white;
         }
 
         p {

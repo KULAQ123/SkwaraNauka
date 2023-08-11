@@ -29,103 +29,103 @@
 </template>
 
 <script>
-import { RouterLink } from 'vue-router'
-import DropDownMenu from '@/components/DropDownMenu.vue'
+import { RouterLink } from "vue-router";
+import DropDownMenu from "@/components/DropDownMenu.vue";
 
 export default {
-  name: 'MenuItem',
+  name: "MenuItem",
   components: { DropDownMenu, RouterLink },
   data() {
     return {
       openedItem: null,
       headerMenuItems: [],
       showDropdown: null
-    }
+    };
   },
   methods: {
     clickOpenMenu(item) {
       if (this.openedItem && item.id !== this.openedItem.id) {
-        this.openedItem.opened = false
+        this.openedItem.opened = false;
       }
 
-      item.opened = !item.opened
+      item.opened = !item.opened;
 
-      this.openedItem = item.opened ? item : null
+      this.openedItem = item.opened ? item : null;
     },
     addOpen() {
       this.headerMenuItems.forEach((item) => {
-        item['opened'] = false
-      })
+        item["opened"] = false;
+      });
 
-      console.log('headerMenuItems', this.headerMenuItems)
+      console.log("headerMenuItems", this.headerMenuItems);
     },
     closeAll() {
       this.headerMenuItems.forEach((item) => {
-        item.opened = false
-      })
+        item.opened = false;
+      });
     }
   },
   mounted() {
     this.headerMenuItems = [
-      { id: 1, label: 'Strona główna', url: '/', children: [] },
-      { id: 2, label: 'O firmie', url: '/o-firmie', children: [] },
+      { id: 1, label: "Strona główna", url: "/", children: [] },
+      { id: 2, label: "O firmie", url: "/o-firmie", children: [] },
       {
         id: 3,
-        label: 'Oferta',
-        url: '/oferta',
+        label: "Oferta",
+        url: "/oferta",
         children: [
           {
             id: 1,
-            label: 'Rozliczenia podatków',
-            url: '/oferta/rozliczenia-podatkow',
+            label: "Rozliczenia podatków",
+            url: "/oferta/rozliczenia-podatkow",
             children: []
           },
-          { id: 2, label: 'Zasiłek rodzinny', url: '/oferta/zasilek-rodzinny', children: [] },
+          { id: 2, label: "Zasiłek rodzinny", url: "/oferta/zasilek-rodzinny", children: [] },
           {
             id: 3,
-            label: 'Ubezpieczenia zdrowotne',
-            url: '/oferta/ubezpieczenie-zdrowotne',
+            label: "Ubezpieczenia zdrowotne",
+            url: "/oferta/ubezpieczenie-zdrowotne",
             children: []
           }
         ]
       },
-      { id: 4, label: 'Aktualności', url: '/aktualnosci', children: [] },
+      { id: 4, label: "Aktualności", url: "/aktualnosci", children: [] },
       {
         id: 5,
-        label: 'Kontakt',
-        url: '/kontakt',
+        label: "Kontakt",
+        url: "/kontakt",
         children: [
           {
             id: 1,
-            label: 'Rozliczenia ccc',
-            url: '/oferta/rozliczenia-podatkow',
+            label: "Rozliczenia ccc",
+            url: "/oferta/rozliczenia-podatkow",
             children: []
           },
-          { id: 2, label: 'Zasiłek rodzinny', url: '/oferta/zasilek-rodzinny', children: [] },
+          { id: 2, label: "Zasiłek rodzinny", url: "/oferta/zasilek-rodzinny", children: [] },
           {
             id: 3,
-            label: 'Ubezpieczenia zdrowotne',
-            url: '/oferta/ubezpieczenie-zdrowotne',
+            label: "Ubezpieczenia zdrowotne",
+            url: "/oferta/ubezpieczenie-zdrowotne",
             children: []
           },
           {
             id: 4,
-            label: 'Ubezpieczenia zdrowotne',
-            url: '/oferta/ubezpieczenie-zdrowotne',
+            label: "Ubezpieczenia zdrowotne",
+            url: "/oferta/ubezpieczenie-zdrowotne",
             children: []
           },
           {
             id: 5,
-            label: 'Ubezpieczenia zdrowotne',
-            url: '/oferta/ubezpieczenie-zdrowotne',
+            label: "Ubezpieczenia zdrowotne",
+            url: "/oferta/ubezpieczenie-zdrowotne",
             children: []
           }
         ]
       }
-    ]
-    this.addOpen()
+    ];
+    this.addOpen();
   }
-}
+};
 </script>
 
 <style lang="scss">

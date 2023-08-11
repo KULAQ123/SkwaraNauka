@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MainView from '@/views/MainView.vue'
+import ApiController from '@/axios/ApiControler'
+// import MainView from "@/views/MainView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +8,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: MainView
+      component: () => import('../views/HomeView.vue')
     },
     {
       path: '/o-firmie',
@@ -67,6 +68,14 @@ const router = createRouter({
     }
   ],
   linkActiveClass: 'active'
+})
+
+router.beforeEach(async (to) => {
+  const tempApiControler = new ApiController()
+
+  await tempApiControler.getData(to.path)
+
+  // ApiController.getData(to.name)
 })
 
 export default router
