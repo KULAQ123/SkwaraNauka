@@ -2,7 +2,8 @@ import { computed, reactive } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useDataStore = defineStore('dataStore', () => {
-  let _data = reactive(new Map())
+  // let _data = reactive(new Map())
+  let _data = reactive({})
 
   // const map1 = new Map()
   //
@@ -13,11 +14,13 @@ export const useDataStore = defineStore('dataStore', () => {
   // console.log("map1.get('/kontakt')", map1.get('/kontakt'))
 
   const getHomeData = computed(() => {
-    return _data.home
+    return _data
   })
 
   function setHomeData(pageData) {
-    _data.home = pageData
+    // cleadrdata
+
+    _data = pageData
   }
 
   return {

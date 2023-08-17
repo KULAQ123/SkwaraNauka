@@ -9,6 +9,16 @@ export default class ApiController {
   //////////////////////////// Endpoints ////////////////////////////
 
   getData(path, locale = 'pl') {
-    return axios.get(`${this.apiUrl}/${locale}${path}.json`)
+    // const link = ``
+    // if (path === '/') {
+    //   const link = `{locale}`
+    // } else {
+    //   link = `${locale}${path}`
+    // }
+
+    return axios.get(`${this.apiUrl}/${locale}.json`).then((response) => {
+      // ja zapisuje se do stora
+      // saveData();
+    })
   }
 }

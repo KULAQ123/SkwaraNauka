@@ -11,8 +11,8 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue')
     },
     {
-      path: '/o-firmie',
-      name: 'o-firmie',
+      path: '/o-nas',
+      name: 'o-nas',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
@@ -65,6 +65,11 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
+    },
+    {
+      name: 'NotFound',
+      path: '/:pathMatch(.*)*',
+      component: () => import('../views/NotFound.vue')
     }
   ],
   linkActiveClass: 'active'
@@ -74,8 +79,6 @@ router.beforeEach(async (to) => {
   const tempApiControler = new ApiController()
 
   await tempApiControler.getData(to.path)
-
-  // ApiController.getData(to.name)
 })
 
 export default router

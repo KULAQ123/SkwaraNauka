@@ -23,20 +23,9 @@ export default {
       return this.dataStore.getHomeData
     }
   },
-  methods: {
-    getData() {
-      this.$ApiController.getHomeData().then((response) => {
-        this.dataStore.setHomeData(response.data)
-      })
-    }
-  },
+  methods: {},
   created() {
     this.dataStore = useDataStore()
-  },
-  beforeMount() {
-    if (!this.homeData?.content) {
-      this.getData()
-    }
   }
 }
 </script>
