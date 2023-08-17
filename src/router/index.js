@@ -76,9 +76,9 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to) => {
-  const tempApiControler = new ApiController()
+  const tempApiController = new ApiController()
 
-  await tempApiControler.getData(to.path)
+  await tempApiController.getData(to.path)
 })
 
 export default router

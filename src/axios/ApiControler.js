@@ -1,5 +1,8 @@
 import axios from 'axios'
 // Make a request for a user with a given ID
+import { useDataStore } from '@/stores/data'
+
+
 
 export default class ApiController {
   constructor() {
@@ -9,16 +12,18 @@ export default class ApiController {
   //////////////////////////// Endpoints ////////////////////////////
 
   getData(path, locale = 'pl') {
-    // const link = ``
-    // if (path === '/') {
-    //   const link = `{locale}`
-    // } else {
-    //   link = `${locale}${path}`
-    // }
+    let link = ``
+    if (path === '/') {
+      link = `${locale}`
+    } else {
+      link = `${locale}${path}`
+    }
 
-    return axios.get(`${this.apiUrl}/${locale}.json`).then((response) => {
+    this.dataStore = useDataStore()
+
+    return axios.get(`${this.apiUrl}/${link}.json`).then((response) => {
       // ja zapisuje se do stora
-      // saveData();
+      this.dataStore.saveData(response);
     })
   }
 }
